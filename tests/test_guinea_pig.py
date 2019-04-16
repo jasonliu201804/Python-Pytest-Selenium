@@ -18,9 +18,11 @@ class TestLink:
         start = time.time()
         end = time.time()
         while end - start < 1500:
-            driver.find_element_by_id("i_am_a_link").click()
+            driver.get('https://saucelabs-sample-test-frameworks.github.io/training-test-page')
+            
+            time.sleep(3)
             end = time.time()
-
+        driver.find_element_by_id("i_am_a_link").click()
         title = "I am another page title - Sauce Labs"
         assert title == driver.title
 
@@ -38,9 +40,13 @@ class TestLink:
         start = time.time()
         end = time.time()
         while end - start < 1500:
-            driver.find_element_by_id("submit").click()
+            driver.get('https://saucelabs-sample-test-frameworks.github.io/training-test-page')
+            email_text_field = driver.find_element_by_id("comments")
+            email_text_field.send_keys(sample_text)
+            
+            time.sleep(3)
             end = time.time()
         
-
+        driver.find_element_by_id("submit").click()
         text = driver.find_element_by_id("your_comments").text
         assert sample_text in text
