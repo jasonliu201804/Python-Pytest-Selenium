@@ -16,6 +16,7 @@ pipeline {
             steps {
                 sauce('penny') {
                     sh 'pytest -s -n2 --junitxml=./reports/result1.xml'
+                    sh 'cat $(find . -name "*.testlog")'
                 }
             }
         }
