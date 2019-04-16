@@ -4,7 +4,9 @@ import pytest
 @pytest.mark.usefixtures('driver')
 class TestLink:
 
-    def test_link(self, driver):
+    def test_link(self, driver, record_xml_attribute):
+        record_xml_attribute("classname", "custom_classname")
+        record_xml_attribute("name", "custom_name")
         """
         Verify page title change when link clicked
         :return: None
