@@ -15,7 +15,7 @@ pipeline {
         stage('parallel automation') {
             steps {
                 sauce('penny') {
-                    sh 'pytest -s -n2 --junitxml=./reports/result1.xml'
+                    sh 'pytest --junitxml=./reports/result1.xml tests'
                     sh 'cat $(find . -name "*.testlog")'
                 }
             }
