@@ -1,4 +1,5 @@
 import pytest
+import time
 
 
 @pytest.mark.usefixtures('driver')
@@ -12,7 +13,13 @@ class TestLink:
         :return: None
         """
         driver.get('https://saucelabs-sample-test-frameworks.github.io/training-test-page')
-        driver.find_element_by_id("i_am_a_link").click()
+
+
+        start = time.time()
+        end = time.time()
+        while end - start < 1500:
+            driver.find_element_by_id("i_am_a_link").click()
+            end = time.time()
 
         title = "I am another page title - Sauce Labs"
         assert title == driver.title
@@ -28,7 +35,12 @@ class TestLink:
         email_text_field = driver.find_element_by_id("comments")
         email_text_field.send_keys(sample_text)
 
-        driver.find_element_by_id("submit").click()
+        start = time.time()
+        end = time.time()
+        while end - start < 1500:
+            driver.find_element_by_id("submit").click()
+            end = time.time()
+        
 
         text = driver.find_element_by_id("your_comments").text
         assert sample_text in text
